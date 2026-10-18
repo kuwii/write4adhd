@@ -37,6 +37,16 @@
 - Module split and dependency direction (who depends on whom):
 - Dirs excluded from the survey (generated code / deps / build output / test data):
 
+**Subsystem inventory (breadth axis; exhaustive over major subsystems — miss one and the reader's first assignment may be there)**:
+
+| Subsystem | One-line responsibility | Entry | Core classes (≤5, with locations) | Interface to the spine | Recent heat | Space in book (chapter / tour section / one line + glossary) |
+|---|---|---|---|---|---|---|
+
+**Module internal layering**:
+
+| Module | Internal layering (directory → layer) |
+|---|---|
+
 ## 3. History layer
 
 - Most active dirs in the last six months (top 5):
@@ -72,6 +82,11 @@
 
 | Term | One plain sentence | Defined at | Who creates it | Who consumes it | Lifetime | Confidence |
 |---|---|---|---|---|---|---|
+
+**Core-class responsibility surfaces** (one row per abstraction; pull signatures in one shot and group them, don't read method bodies):
+
+| Abstraction | Public method groups | Holds whom | Held by whom | Key internal subclasses | Which requests land on it |
+|---|---|---|---|---|---|
 
 **Code snippets worth quoting in the book (pick 4–8, each trimmed to ≤15 lines)**:
 
@@ -110,19 +125,26 @@ Reader profile: junior programmer, zero background in this domain. List only wha
 
 - ❓
 
-## 10. Chapter cut decisions
+## 10. Part split and chapter cut decisions
 
-| Blueprint chapter | In this book? | Why / which spine segment it covers |
+**Part split** (4–6; meet → foundations → walk-through → territory → doing the work):
+
+| Part | Chapters inside | After this part the reader can |
 |---|---|---|
-| 1 Prerequisites crash course | | |
-| 2 What it is | | |
+
+| Blueprint chapter | In this book? | Which part / which spine segment |
+|---|---|---|
+| 1 What it is | | |
+| 2 Global shape | | |
 | 3 Make it run | | |
-| 4 Codebase map | | |
-| 5 Core abstractions | | |
-| 6 Walk it (the spine) | | |
-| 7 Hard bones | | which ones: |
-| 8 Changing code: build to PR | | |
-| 9 Your first change | | practice-task candidates: |
+| 4 Prerequisites crash course | | |
+| 5 Codebase map (incl. module layering) | | |
+| 6 Core abstractions & responsibility map | | |
+| 7 Walk it (part 1/2) | | |
+| 8 Hard bones | | which ones: |
+| 9 Subsystem tour | | which subsystems get a section: |
+| 10 Changing code: build to PR | | |
+| 11 Your first change | | practice-task candidates: |
 | ∞ Wrap-up + where next | | |
 | app Jargon glossary | | |
 | app Errors & pitfalls lookup | | |

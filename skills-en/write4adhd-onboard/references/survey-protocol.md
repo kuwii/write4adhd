@@ -7,9 +7,9 @@ Write every finding into the notes file (`assets/survey-notes-template.md`), kep
 ## 0. Three disciplines (memorise first; breaking any one of them ends badly)
 
 1. **Sample, don't read through.** A large repo cannot be read cover to cover and doesn't need to be. Always locate with `rg` first, then read only 30–120 lines around the hit; never `cat` a whole file. A single file gets at most 2–3 windows in one survey.
-2. **Only dig deep where the spine runs, and write as you go.** The survey exists to support that one end-to-end main line (see `book-blueprint.md` section 1). Anything off the spine gets one line — "exists, not expanding" — and you move on.
+2. **Sampling controls depth per spot, never breadth**, and write as you go. The survey has two axes (see `book-blueprint.md` section 1): the spine gives depth, the subsystem inventory gives breadth. The sampling discipline governs **how deep you read one file** (locate with `rg` first, then take windows; ≤3 windows per file) — **not** "anything off the spine may be skipped". Every subsystem on the inventory gets at least one targeted look (entry + core-class list + first 30 lines of the class head); a zero-information "exists, not expanding" is a debt, not discipline.
    - **Notes first**: at the very start of the survey, copy the template into a notes file, and **write each layer's findings into it the moment that layer is done** (write/edit, on disk). Do not hoard everything and backfill from memory at the end. If you can't write the "one-line responsibility", you haven't understood that layer yet — the act of writing to disk is what forces you to converge, and an interruption mid-survey won't leave you with nothing.
-   - **Budget in search steps**: count both `read` calls and "searching / windowing `bash`" calls (`rg`, `sed -n`, `git log`, `wc`, …) — one step each, ≤ 60 in total (≤ 90 for a very large repo). Per-layer quota: layers 1–4 ≤ 20, layer 5 ≤ 30, layer 6 ≤ 15. Past that you are digging side tunnels — stop, write the notes, fix the spine.
+   - **Budget in search steps**: count both `read` calls and "searching / windowing `bash`" calls (`rg`, `sed -n`, `git log`, `wc`, …) — one step each, ≤ 90 in total (≤ 140 for a very large repo). Per-layer quota: layers 1–4 ≤ 30, layer 5 ≤ 40, layer 6 ≤ 20. Past that you are digging one spot too deep — go back to the inventory: **finishing the breadth beats drilling one well through**.
 3. **Separate "read" from "guessed".** Tag every finding with a confidence mark, in the notes, right away — don't wait until writing time to remember:
 
    | Mark | Meaning |
@@ -58,6 +58,11 @@ Then read the build config to learn the module split and dependency direction (w
 
 Note down: primary and secondary languages, order of magnitude of the code (thousands / hundreds of thousands / millions of lines — this decides how much the book can cover), the module list with one-line responsibilities, which dirs are core and which can be ignored for now (test data, examples, scripts, doc site, legacy).
 
+**This layer also produces two tables** (the breadth axis's foundation; fields in `book-blueprint.md` section 1.2):
+
+1. **Subsystem inventory**: condense modules + top-level dirs + entries into "subsystem" granularity (one subsystem = one piece a reader might be assigned to own, e.g. "scheduling", "shuffle", "web UI", "history replay", "Python API"). Per item note: one-line responsibility / entry / ≤5 core classes / interface to the spine / recent change heat / space allocated in this book. The inventory must be **exhaustive** over major subsystems — miss one and the reader's first assignment may be exactly there.
+2. **Module internal layering**: what each core module is divided into internally (directory → layer), e.g. `sql/catalyst` = parser / analysis / optimizer / plan trees; `core` = scheduling / shuffle / memory / storage / execution / UI. Directory and package names are enough to derive this; no need to read implementations.
+
 ## 3. History layer: who changes what, where
 
 ```bash
@@ -99,6 +104,8 @@ ls <core module>/src/main/<lang path>/     # the directory names are themselves 
 rg -l '^package ' <core module>/src/main | head -20
 ```
 
+Repeat the entry identification for **every subsystem on the inventory** (the breadth axis's targeted look): its user/process/extension entries, its core-class list (`rg` for class definitions + reading the first 30 lines of the class head is enough), and at which hop it connects to the spine (write "standalone; interface is X" when it doesn't). Keep each subsystem to 2–3 searches — this is the floor cost of the coverage promise; don't skip it.
+
 ## 5. Lifeline layer ★: walk it end to end (the most important layer)
 
 This layer decides whether the book is useful or not. Goal: **pick the smallest, user-visible, meaningful operation and follow it from entry to result, hop by hop**, recording every hop.
@@ -126,7 +133,7 @@ rg -o '\b[A-Z][A-Za-z]{3,}\b' --no-filename <core module>/src/main \
   | sort | uniq -c | sort -rn | head -40
 ```
 
-For each core abstraction note: a plain-words explanation, which file defines it, who creates it, who consumes it, how long it lives (one call / one job / one process).
+For each core abstraction note: a plain-words explanation, which file defines it, who creates it, who consumes it, how long it lives (one call / one job / one process), and its **responsibility surface**: public methods grouped by function (listing signatures is enough — don't read method bodies), who it holds, who holds it, key internal subclasses/inner classes, and "which kinds of requests land on it". Pull the signatures in one shot with something like `rg -n '^\s*(def|public|private\[spark\] def) ' <file> | head -40` and then group them — the cheapest step there is for building top-down understanding.
 
 ## 6. Dev-loop layer: what the newcomer needs on day two
 
@@ -152,10 +159,11 @@ The degraded path when the build is too expensive to run (common in big projects
 
 ## 7. Wrap-up: list the gaps
 
-Before ending the survey, fill in these three tables in the notes — they directly determine the book's skeleton:
+Before ending the survey, fill in these three tables and run the final coverage check in the notes — they directly determine the book's skeleton:
 
 1. **Prerequisite gaps**: concepts the reader profile (junior programmer, zero domain background) won't know but that the spine and the layer-5 core abstractions require. For each: concept / why it's needed / one plain sentence / which chapter it will live in. Only the ones that **genuinely block understanding of the main line** go into chapter 1 "prerequisites crash course" (usually 3–6); the rest get a one-line backfill at the point of use, or an appendix.
 2. **Pits and warnings**: every "this is unintuitive / the docs lie / easy to trip on" point you hit during the survey. These are the book's differentiating value — don't waste them.
 3. **Unresolved questions**: every ❓. Decide per item while writing — verify it, or confess it in the book with an entry point for checking.
+4. **Inventory coverage check**: go through the subsystem inventory row by row and confirm every item has its landing spot in the book filled in (full chapter / tour section / one map line + one glossary row); any blank row is a debt — go back and do the targeted look.
 
 One last thing: invent **one homespun, everyday core metaphor** for the project (per `write4adhd-book`'s style rules). It must be able to carry the overall architecture, not just one concept — every structural layer the reader meets later should hang on it. If you can't find one, you don't yet have a grip on the project's overall shape; go back to layers 2 and 5.

@@ -36,7 +36,7 @@ First copy `code-kit.css` into the deliverable directory (book site: next to `st
 <p>Watch the highlighted line: the <code>DAGScheduler</code> is <strong>newed right here</strong>, not passed in from outside.</p>
 ```
 
-Rules (details in `book-blueprint.md` section 4): one plain sentence before the block, one pointer after, ≤15 lines, never rename identifiers, at most 2 `.hl`/`.mark`/`.dim` marks per snippet, escape `<` `>` `&` inside `<pre>`. **Omissions are always shown as a `// … omitted: this does XXX` comment line, never as a blank line** — blank lines carry meaning in source (grouping, paragraph breaks), and readers will assume the source really has them.
+Rules (details in `book-blueprint.md` section 5): one plain sentence before the block, one pointer after, ≤15 lines, never rename identifiers, at most 2 `.hl`/`.mark`/`.dim` marks per snippet, escape `<` `>` `&` inside `<pre>`. **Omissions are always shown as a `// … omitted: this does XXX` comment line, never as a blank line** — blank lines carry meaning in source (grouping, paragraph breaks), and readers will assume the source really has them.
 
 ## 2. Commands and output (two blocks)
 
@@ -172,4 +172,42 @@ For linear flows like "how to run it" or "how to open a PR", use `.steps` — it
 
 ## 11. Diagrams
 
-Follow `write4adhd-book`'s Canvas rules and the `shared.js` helpers; `code-kit` is not involved. Of this book's four required diagrams (ecosystem position / module map / abstraction relationships / spine sequence), **make the last two `setupAnim` step animations** where possible: call chains and the layered construction of abstractions are essentially temporal, and stepping through them beats showing everything at once. The animation bar (pause / step / replay) and auto-pause off-viewport stay mandatory.
+Follow `write4adhd-book`'s Canvas rules and the `shared.js` helpers; `code-kit` is not involved. Of this book's six required diagrams (ecosystem position / process topology / modules+layering / ownership / spine sequence / subsystem panorama), **make the ownership diagram and the spine sequence diagram `setupAnim` step animations** where possible: call chains and the layered construction of abstractions are essentially temporal, and stepping through them beats showing everything at once. The animation bar (pause / step / replay) and auto-pause off-viewport stay mandatory.
+
+## 12. Parts and TOC grouping
+
+Past ~10 chapters the book splits into parts (see `book-blueprint.md` section 2). No new components needed: the TOC page uses numbered `h2`s as part headers, and chapter badges carry the part number.
+
+```html
+<!-- TOC page: grouped by part -->
+<h2><span class="num">Ⅱ</span> Foundations</h2>
+<p class="muted">After this part: the vocabulary every chapter needs; guess where code lives from directories; say what each core class can do.</p>
+<nav class="toc">
+  <a class="toc-item" href="ch4.html">…</a>
+  <a class="toc-item" href="ch5.html">…</a>
+</nav>
+<h2><span class="num">Ⅲ</span> Walk-through</h2>
+…
+```
+
+```html
+<!-- chapter page: badge carries the part number -->
+<span class="badge">Part Ⅱ · Chapter 6</span>
+```
+
+## 13. Responsibility-surface tables and tour sections
+
+**Responsibility-surface tables** (chapter 6) use a plain `.striped` table with the method-group name in the first column; one per core abstraction, preceded by one plain sentence ("this class does exactly these four groups of things in its life"):
+
+```html
+<div class="table-wrap">
+  <table class="striped">
+    <thead><tr><th>Method group</th><th>Representatives</th><th>What it does</th><th>Which requests land here</th></tr></thead>
+    <tbody>
+      <tr><td>Submit jobs</td><td><code>runJob</code> / <code>submitJob</code></td><td>hand an RDD + function to the scheduler</td><td>changing the submission entry, job-level hooks</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+**Tour sections** (chapter 9) keep a fixed four-beat shape, and stay short: what it solves (one sentence) → entry and core classes (`.file-tree` or a small table, with locations) → interface to the spine (one sentence; "standalone; interface is X" when it doesn't connect) → first stop when changing it (one sentence + optional read-only hands-on task). **Never mark them skippable** — these sections exist precisely for "the reader's next task is there".
