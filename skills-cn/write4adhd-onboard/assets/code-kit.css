@@ -1,0 +1,308 @@
+/* code-kit.css — write4adhd-onboard 的追加组件样式（开发者文档专用）
+ *
+ * 用法：
+ *   · 书站形态：把本文件复制到书目录，与 style.css 并列，在每页 <head> 里
+ *     <link rel="stylesheet" href="style.css"> 之后再加一行
+ *     <link rel="stylesheet" href="code-kit.css">（顺序不能反，本文件要覆盖在前）。
+ *   · 单页形态：把本文件内容并入 skeleton.html 的内联 <style> 末尾。
+ *
+ * 只使用 style.css 里已定义的 CSS 变量，不新增变量、不引外部资源，亮/暗主题都成立。
+ * 设计取舍：不做语法高亮（手写 span 成本太高、维护困难），改用 .hl / .mark / .dim
+ * 做「注意力标注」——一段代码最多标 2 处，告诉读者该看哪一行。
+ */
+
+/* ── 行内代码与文件路径 ── */
+code {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.86em;
+  word-break: break-word;
+}
+
+/* 文件路径：主色，不加边框，避免正文里一片方块 */
+code.path, .path > code {
+  background: var(--primary-light);
+  border-color: transparent;
+  color: var(--primary);
+  word-break: break-all;
+}
+
+/* ── 代码块 ── */
+pre {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 0.84em;
+  line-height: 1.7;
+  margin: 18px 0;
+  color: var(--text);
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-block {
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* 头部条：左边写出处（路径:行号 / “终端” / 语言），右边可放说明 */
+.code-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 7px 14px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  font-size: 0.74em;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.code-head .tag {
+  color: var(--primary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.code-block pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.code-block code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1em;
+  color: inherit;
+  word-break: normal;
+}
+
+/* 输出块：弱化，跟“要敲的命令”区分开 */
+.code-block.out { border-style: dashed; }
+.code-block.out .code-head { color: var(--text-light); }
+.code-block.out pre { color: var(--text-muted); }
+
+/* ── 注意力标注（代替语法高亮） ── */
+.code-block .hl {
+  display: block;
+  margin: 0 -16px;
+  padding: 0 16px;
+  background: var(--accent-light);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.code-block .mark {
+  color: var(--accent);
+  font-weight: 700;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* 先别管的部分：注释、样板代码、无关分支 */
+.code-block .dim { color: var(--text-light); }
+
+/* ── 文件树 ── */
+.file-tree .hot { color: var(--accent); font-weight: 700; }   /* 核心目录 */
+.file-tree .cold { color: var(--text-light); }                /* 第一遍可以忽略 */
+.file-tree .c { color: var(--text-muted); }                   /* 一句话职责 */
+
+/* ── 表格 ── */
+.table-wrap {
+  overflow-x: auto;
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+.table-wrap > table { margin: 0; }
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+.striped tbody tr:nth-child(even) { background: var(--bg); }
+
+td code, th code { font-size: 0.92em; word-break: normal; }  /* 表格里不许逐字断行，否则宽表会塌成竖条，该让 .table-wrap 横向滚 */
+
+/* 黑话词典：第一列是术语，不换行 */
+.term-table td:first-child {
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ── 动手任务框 ── */
+.hands-on {
+  border: 1px solid var(--green);
+  border-left: 4px solid var(--green);
+  background: var(--green-light);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 16px 20px;
+  margin: 24px 0;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.hands-on .ho-head {
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 8px;
+  font-size: 0.98em;
+}
+
+.hands-on p:last-child, .hands-on ul:last-child, .hands-on ol:last-child { margin-bottom: 0; }
+
+.hands-on ol, .hands-on ul { margin: 8px 0 10px 20px; }
+
+/* “做坏了怎么恢复” */
+.hands-on .undo {
+  font-size: 0.86em;
+  color: var(--text-muted);
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--green);
+}
+
+/* ── 章末检查点 ── */
+.checkpoint {
+  border: 1px dashed var(--primary);
+  background: var(--primary-light);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin: 24px 0;
+}
+
+.checkpoint .cp-head {
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 6px;
+  font-size: 0.95em;
+}
+
+.checkpoint ul { list-style: none; margin: 6px 0 0; }
+
+.checkpoint li { margin-bottom: 4px; }
+
+.checkpoint li::before { content: "☐ "; color: var(--primary); }
+
+/* ── 「第一遍可跳过」标记（挂在 h2/h3 标题后） ── */
+.skip-flag {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  padding: 1px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg);
+  color: var(--text-light);
+  font-size: 0.62em;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+/* ── 坑与警告（紫色，跟橙色的 .callout 自问自答区分开） ── */
+.warn {
+  background: var(--purple-light);
+  border-left: 3px solid var(--purple);
+  padding: 14px 18px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 18px 0;
+}
+
+.warn p { margin: 0; }
+.warn p + p { margin-top: 8px; }
+.warn .warn-head { font-weight: 800; color: var(--purple); }
+
+/* ── 置信度小胶囊：标注结论是实测的还是推断的 ──
+   只放短标签（如“▶ 实测”“⚠️ 未实测”）；长说明写进正文或 .warn，别塞进胶囊。 */
+.pill {
+  display: inline-block;
+  padding: 0 8px;
+  border-radius: 20px;
+  font-size: 0.76em;
+  font-weight: 700;
+  white-space: normal;
+  vertical-align: middle;
+}
+.pill.ok   { background: var(--green-light);  color: var(--green); }
+.pill.warn { background: var(--accent-light); color: var(--accent); }
+.pill.unk  { background: var(--purple-light); color: var(--purple); }
+
+/* ── 编号步骤（“怎么跑起来”“怎么提 PR”这类流程） ── */
+.steps { list-style: none; counter-reset: step; margin: 16px 0 16px 4px; }
+
+.steps > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 44px;
+  margin-bottom: 18px;
+}
+
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+.steps > li > strong:first-child { display: inline-block; margin-bottom: 2px; }
+
+/* ── 窄屏 ── */
+@media (max-width: 600px) {
+  pre, .code-block pre { font-size: 0.78em; padding: 12px; }
+  .code-block .hl { margin: 0 -12px; padding: 0 12px; }
+  .code-head { font-size: 0.7em; padding: 6px 12px; }
+  table { font-size: 0.84em; }
+  th, td { padding: 8px 10px; }
+  .hands-on, .checkpoint, .warn { padding: 12px 14px; }
+  .steps > li { padding-left: 38px; }
+  .skip-flag { font-size: 0.58em; }
+}

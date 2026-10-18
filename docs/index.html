@@ -606,6 +606,8 @@ footer .sep { color: var(--text-light); padding: 0 6px; }
 
     <p>每个 skill 都有<strong>中英两个版本</strong>：规则和模板完全一样，区别只在产出文档的语言。两者同名，<strong>装一个就够</strong>——要写中文文档就拷 <code>skills-cn/</code> 的，要写英文就拷 <code>skills-en/</code> 的。</p>
 
+    <p>现在有两个 skill：<code>write4adhd-book</code> 写科普；<code>write4adhd-onboard</code> 给软件项目写<strong>上手书</strong>——先按调查协议摸清一个陌生代码库，再写一本把新人从“对本领域一无所知”带到“能进去改代码”的入门书。后者是前者的配套：文风和模板都借前者的，所以要装就两个一起拷。</p>
+
     <pre><code><span class="cmt"># 项目级：只有当前项目能用（英文版把 skills-cn 换成 skills-en）</span>
 cp -r skills-cn/write4adhd-book &lt;你的项目&gt;/.agents/skills/
 
@@ -637,6 +639,8 @@ cp -r skills-cn/write4adhd-book ~/.agents/skills/</code></pre>
     </div>
 
     <p>Every skill ships in <strong>two language variants</strong>: identical rules and templates, the only difference is the language it writes in. They share a name, so <strong>install just one</strong> — <code>skills-cn/</code> writes Chinese, <code>skills-en/</code> writes English.</p>
+
+    <p>There are two skills now: <code>write4adhd-book</code> writes explainers; <code>write4adhd-onboard</code> writes <strong>onboarding books</strong> for software projects — it surveys an unfamiliar codebase with a fixed protocol first, then writes the primer that takes a newcomer from "knows nothing about this domain" to "can change the code". The second is a companion of the first — it borrows its voice and templates — so copy both or neither.</p>
 
     <pre><code><span class="cmt"># Project level: this project only (use skills-cn for the Chinese skill)</span>
 cp -r skills-en/write4adhd-book &lt;your-project&gt;/.agents/skills/
