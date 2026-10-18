@@ -19,7 +19,7 @@ README.zh_CN.md       # 中文 README
 .tmp/                 # 草稿区，已 gitignore，正式交付物不放这里
 ```
 
-现有 skill 之间的依赖关系：`write4adhd-onboard` 是 `write4adhd-book` 的**配套 skill**——它只规定“调查什么、写什么”，“怎么写”全部委托给 `write4adhd-book`（文风、模板、HTML 制作规范都不复制，只做叠加与覆盖）。它自带的 `assets/code-kit.css` 是开发者文档组件的**追加样式**，只使用 `style.css` 已有的 CSS 变量，不改动 `write4adhd-book` 的任何文件。
+现有 skill 之间的依赖关系：`write4adhd-dev-onboarding` 是 `write4adhd-book` 的**配套 skill**——它只规定“调查什么、写什么”，“怎么写”全部委托给 `write4adhd-book`（文风、模板、HTML 制作规范都不复制，只做叠加与覆盖）。它自带的 `assets/code-kit.css` 是开发者文档组件的**追加样式**，只使用 `style.css` 已有的 CSS 变量，不改动 `write4adhd-book` 的任何文件。
 
 ## 命名约定
 
@@ -31,10 +31,10 @@ README.zh_CN.md       # 中文 README
 
 ## 硬性规则
 
-1. **skill 必须自包含**：不引用仓库内外部的任何原作、文章或网络资源；范文例句一律内嵌在 references 里。使用方只拷走一个 skill 目录就能完整工作。**唯一例外是配套 skill**：`write4adhd-onboard` 允许（且必须）引用同套安装的 `write4adhd-book` 的 SKILL.md 与 references——引用只写 skill 名（两边同名，与语言无关），不写 `skills-cn`/`skills-en` 路径；且 onboard 不得把 book 的文风规则或模板内容复制进自己体内，只能叠加与覆盖，覆盖条款集中放在它的 `references/book-blueprint.md` 第 0 节，防止两处规则漂移。
+1. **skill 必须自包含**：不引用仓库内外部的任何原作、文章或网络资源；范文例句一律内嵌在 references 里。使用方只拷走一个 skill 目录就能完整工作。**唯一例外是配套 skill**：`write4adhd-dev-onboarding` 允许（且必须）引用同套安装的 `write4adhd-book` 的 SKILL.md 与 references——引用只写 skill 名（两边同名，与语言无关），不写 `skills-cn`/`skills-en` 路径；且 onboard 不得把 book 的文风规则或模板内容复制进自己体内，只能叠加与覆盖，覆盖条款集中放在它的 `references/book-blueprint.md` 第 0 节，防止两处规则漂移。
 2. **assets 模板零外部依赖**：不引 CDN、webfont、外链图片；整页/整站离线可用。
 3. **中英双语必须同步**：修改任何 skill（文档、规范、模板）或新增 skill 时，**必须在 `skills-cn/` 和 `skills-en/` 两边做出对应的改动**，不允许只改一边造成规则漂移。新增 skill 时两个语言目录同时建好再提交。但**skill 内部不得提及另一个语言版本的存在**（不写 `skills-cn`/`skills-en` 路径、不写"英文版/中文版请改用……"）：使用方只安装一个语言版本，交叉引用缺乏上下文，只会干扰 agent。语言分工只写在 README 和本文件里；skill 内部最多声明自身产出语言（如"本 skill 产出的正文一律为中文"）。
-4. **assets 代码两边保持一致**：`skills-cn` 与 `skills-en` 的同名模板，除**自然语言字符串**（注释、占位文案、`aria-label`/`title`、按钮文字、`lang` 属性、字体栈）外，HTML 结构、CSS、JS 必须完全相同。改完用 `diff -u` 对照，剩余差异应当只有语言相关的行。`write4adhd-onboard/assets/code-kit.css` 的生成方式是从中文版脚本替换注释得到，改它时同样先改中文版再重新生成英文版，然后 `diff` 确认剩余差异只有注释行。
+4. **assets 代码两边保持一致**：`skills-cn` 与 `skills-en` 的同名模板，除**自然语言字符串**（注释、占位文案、`aria-label`/`title`、按钮文字、`lang` 属性、字体栈）外，HTML 结构、CSS、JS 必须完全相同。改完用 `diff -u` 对照，剩余差异应当只有语言相关的行。`write4adhd-dev-onboarding/assets/code-kit.css` 的生成方式是从中文版脚本替换注释得到，改它时同样先改中文版再重新生成英文版，然后 `diff` 确认剩余差异只有注释行。
 5. **同源文件同步修改**：`write4adhd-book/assets/skeleton.html` 的内联 CSS/JS 与 `assets/site/style.css`、`assets/site/shared.js` 是同一套代码的两种组织形式；中英文两边加起来共 4 处，改任何一处必须同步其余各处（文件头注释有提醒）。
 6. **文档语言**：`skills-cn/` 的文档、模板占位文案与注释用中文；`skills-en/` 一律用英文（不得残留中文，也不要用中式直译）；AGENTS.md 用中文。
 7. **README 分两个文件、内容对应**：`README.md` 是英文版（默认，GitHub 仓库首页渲染这一份），`README.zh_CN.md` 是中文版。两份章节、skills 表格、仓库结构、示例命令要一一对应（改一份就要改另一份），但不做逐字直译，各自用母语者的自然说法表达同一个意思；默认语言的示例用默认语言版本的 skill（英文 README 示例用 `skills-en/`，中文 README 示例用 `skills-cn/`）。

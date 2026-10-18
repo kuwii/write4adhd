@@ -22,9 +22,9 @@ Every skill comes in **two language variants**: identical rules and templates, o
 | Skill | What it does | 中文 | English |
 |---|---|---|---|
 | `write4adhd-book` | Explainers, docs and chaptered books in the demystified style, delivered as HTML (with animated diagrams) or Markdown | [`skills-cn/write4adhd-book`](skills-cn/write4adhd-book/) | [`skills-en/write4adhd-book`](skills-en/write4adhd-book/) |
-| `write4adhd-onboard` | Onboarding books for a software project: surveys an unfamiliar codebase first, then writes a primer that takes a junior developer from "knows nothing about this domain" to "can change the code". **Install it together with `write4adhd-book`** — it borrows that skill's voice and templates | [`skills-cn/write4adhd-onboard`](skills-cn/write4adhd-onboard/) | [`skills-en/write4adhd-onboard`](skills-en/write4adhd-onboard/) |
+| `write4adhd-dev-onboarding` | Onboarding books for a software project: surveys an unfamiliar codebase first, then writes a primer that takes a junior developer from "knows nothing about this domain" to "can change the code". **Install it together with `write4adhd-book`** — it borrows that skill's voice and templates | [`skills-cn/write4adhd-dev-onboarding`](skills-cn/write4adhd-dev-onboarding/) | [`skills-en/write4adhd-dev-onboarding`](skills-en/write4adhd-dev-onboarding/) |
 
-All skills carry the **`write4adhd-`** prefix and live in a per-language directory: `skills-cn/` writes Chinese, `skills-en/` writes English. `write4adhd-onboard` is a companion skill: it defines *what to investigate and what to write*, and delegates *how to write* to `write4adhd-book`, so copy **both** directories of the same language when you want it.
+All skills carry the **`write4adhd-`** prefix and live in a per-language directory: `skills-cn/` writes Chinese, `skills-en/` writes English. `write4adhd-dev-onboarding` is a companion skill: it defines *what to investigate and what to write*, and delegates *how to write* to `write4adhd-book`, so copy **both** directories of the same language when you want it.
 
 ## Quick start
 
@@ -37,18 +37,18 @@ cp -r skills-en/write4adhd-book <your-project>/.agents/skills/
 # User level: every project
 cp -r skills-en/write4adhd-book ~/.agents/skills/
 
-# write4adhd-onboard needs its companion:
-cp -r skills-en/write4adhd-book skills-en/write4adhd-onboard <your-project>/.agents/skills/
+# write4adhd-dev-onboarding needs its companion:
+cp -r skills-en/write4adhd-book skills-en/write4adhd-dev-onboarding <your-project>/.agents/skills/
 ```
 
 Then, in any agent that supports [Agent Skills](https://agentskills.io/) (such as pi):
 
 ```text
 /skill:write4adhd-book write a plain-English primer on Docker
-/skill:write4adhd-onboard help me get up to speed on this project
+/skill:write4adhd-dev-onboarding help me get up to speed on this project
 ```
 
-Or just ask naturally: "explain XXX like I've never heard of it" — and with `write4adhd-onboard` installed, a bare "help me get up to speed on this project" is enough; it infers everything else and tells you its defaults before starting.
+Or just ask naturally: "explain XXX like I've never heard of it" — and with `write4adhd-dev-onboarding` installed, a bare "help me get up to speed on this project" is enough; it infers everything else and tells you its defaults before starting.
 
 ## Repo layout
 
@@ -59,10 +59,10 @@ write4adhd/
 │   │   ├── SKILL.md         # entry point: workflow + non-negotiables
 │   │   ├── references/      # style guide, HTML page craft
 │   │   └── assets/          # copy-paste page / book-site templates
-│   └── write4adhd-onboard/  # onboarding books: survey protocol + chapter blueprint + code-kit styles
+│   └── write4adhd-dev-onboarding/  # onboarding books: survey protocol + chapter blueprint + code-kit styles
 ├── skills-en/               # English skills (same layout)
 │   ├── write4adhd-book/
-│   └── write4adhd-onboard/
+│   └── write4adhd-dev-onboarding/
 ├── README.md                # this file
 ├── README.zh_CN.md          # 中文版
 ├── AGENTS.md                # context for agents maintaining this repo

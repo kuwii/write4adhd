@@ -1,9 +1,9 @@
 ---
-name: write4adhd-onboard
-description: Write developer onboarding docs / newcomer books for a software project: survey the unfamiliar codebase with a six-layer protocol (shape, history, entry points, an end-to-end trace of one call, the build-and-test loop), then write a chaptered primer that takes a junior developer who can code but knows nothing about this domain from zero to "can change the code" — build it locally, find the file a feature or error lives in, run a single test, submit a first change. Output formats match write4adhd-book (self-contained HTML / multi-page book site / Markdown) and follow its demystified style; this skill only says what to investigate and what to write, and is installed alongside write4adhd-book. One sentence triggers it — "help me get up to speed on this project", "walk me through this codebase" — no parameters needed; also for newcomer/contributor guides, codebase tours, architecture primers, or when the user names write4adhd-onboard. All prose produced is in English.
+name: write4adhd-dev-onboarding
+description: Write developer onboarding docs / newcomer books for a software project: survey the unfamiliar codebase with a six-layer protocol (shape, history, entry points, an end-to-end trace of one call, the build-and-test loop), then write a chaptered primer that takes a junior developer who can code but knows nothing about this domain from zero to "can change the code" — build it locally, find the file a feature or error lives in, run a single test, submit a first change. Output formats match write4adhd-book (self-contained HTML / multi-page book site / Markdown) and follow its demystified style; this skill only says what to investigate and what to write, and is installed alongside write4adhd-book. One sentence triggers it — "help me get up to speed on this project", "walk me through this codebase" — no parameters needed; also for newcomer/contributor guides, codebase tours, architecture primers, or when the user names write4adhd-dev-onboarding. All prose produced is in English.
 ---
 
-# write4adhd-onboard: the project onboarding book
+# write4adhd-dev-onboarding: the project onboarding book
 
 Write onboarding docs for **someone about to take over a software project**. The reader profile is specific: **they can code** (junior developer / student / researcher) **but know nothing about the domain this project lives in**.
 

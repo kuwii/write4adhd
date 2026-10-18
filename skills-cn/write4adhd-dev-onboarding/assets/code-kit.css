@@ -1,22 +1,17 @@
-/* code-kit.css — add-on component styles for write4adhd-onboard (developer docs)
+/* code-kit.css — write4adhd-dev-onboarding 的追加组件样式（开发者文档专用）
  *
- * Usage:
- *   - Book site: copy this file next to style.css in the book directory, and in
- *     every page's <head> add one line after
- *     <link rel="stylesheet" href="style.css">:
- *     <link rel="stylesheet" href="code-kit.css"> (order matters — this file must
- *     come second so it wins).
- *   - Single page: merge this file's contents into the end of skeleton.html's
- *     inline <style>.
+ * 用法：
+ *   · 书站形态：把本文件复制到书目录，与 style.css 并列，在每页 <head> 里
+ *     <link rel="stylesheet" href="style.css"> 之后再加一行
+ *     <link rel="stylesheet" href="code-kit.css">（顺序不能反，本文件要覆盖在前）。
+ *   · 单页形态：把本文件内容并入 skeleton.html 的内联 <style> 末尾。
  *
- * Uses only the CSS variables already defined in style.css; adds no variables,
- * loads no external resources, and holds up in both light and dark themes.
- * Design trade-off: no syntax highlighting (hand-written spans cost too much and
- * rot too fast). Instead .hl / .mark / .dim do "attention marking" — at most 2
- * marks per snippet, telling the reader which line to look at.
+ * 只使用 style.css 里已定义的 CSS 变量，不新增变量、不引外部资源，亮/暗主题都成立。
+ * 设计取舍：不做语法高亮（手写 span 成本太高、维护困难），改用 .hl / .mark / .dim
+ * 做「注意力标注」——一段代码最多标 2 处，告诉读者该看哪一行。
  */
 
-/* ── inline code and file paths ── */
+/* ── 行内代码与文件路径 ── */
 code {
   font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
   background: var(--surface);
@@ -28,7 +23,7 @@ code {
   word-break: break-word;
 }
 
-/* file paths: primary colour, no border, so prose isn't littered with boxes */
+/* 文件路径：主色，不加边框，避免正文里一片方块 */
 code.path, .path > code {
   background: var(--primary-light);
   border-color: transparent;
@@ -36,7 +31,7 @@ code.path, .path > code {
   word-break: break-all;
 }
 
-/* ── code blocks ── */
+/* ── 代码块 ── */
 pre {
   font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
   background: var(--surface);
@@ -60,7 +55,7 @@ pre {
   transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* header bar: source on the left (path:line / "terminal" / language), optional note on the right */
+/* 头部条：左边写出处（路径:行号 / “终端” / 语言），右边可放说明 */
 .code-head {
   display: flex;
   justify-content: space-between;
@@ -98,12 +93,12 @@ pre {
   word-break: normal;
 }
 
-/* output block: muted, to tell it apart from "commands to type" */
+/* 输出块：弱化，跟“要敲的命令”区分开 */
 .code-block.out { border-style: dashed; }
 .code-block.out .code-head { color: var(--text-light); }
 .code-block.out pre { color: var(--text-muted); }
 
-/* ── attention marks (instead of syntax highlighting) ── */
+/* ── 注意力标注（代替语法高亮） ── */
 .code-block .hl {
   display: block;
   margin: 0 -16px;
@@ -120,15 +115,15 @@ pre {
   padding: 0;
 }
 
-/* the don't-bother-yet part: comments, boilerplate, irrelevant branches */
+/* 先别管的部分：注释、样板代码、无关分支 */
 .code-block .dim { color: var(--text-light); }
 
-/* ── file trees ── */
-.file-tree .hot { color: var(--accent); font-weight: 700; }   /* core directory */
-.file-tree .cold { color: var(--text-light); }                /* ignorable on a first pass */
-.file-tree .c { color: var(--text-muted); }                   /* one-line responsibility */
+/* ── 文件树 ── */
+.file-tree .hot { color: var(--accent); font-weight: 700; }   /* 核心目录 */
+.file-tree .cold { color: var(--text-light); }                /* 第一遍可以忽略 */
+.file-tree .c { color: var(--text-muted); }                   /* 一句话职责 */
 
-/* ── tables ── */
+/* ── 表格 ── */
 .table-wrap {
   overflow-x: auto;
   margin: 20px 0;
@@ -165,16 +160,16 @@ tbody tr:last-child td { border-bottom: none; }
 
 .striped tbody tr:nth-child(even) { background: var(--bg); }
 
-td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character breaks inside tables, or wide tables collapse into vertical strips; let .table-wrap scroll sideways instead */
+td code, th code { font-size: 0.92em; word-break: normal; }  /* 表格里不许逐字断行，否则宽表会塌成竖条，该让 .table-wrap 横向滚 */
 
-/* jargon glossary: first column is the term, no wrapping */
+/* 黑话词典：第一列是术语，不换行 */
 .term-table td:first-child {
   font-weight: 700;
   color: var(--text);
   white-space: nowrap;
 }
 
-/* ── hands-on task box ── */
+/* ── 动手任务框 ── */
 .hands-on {
   border: 1px solid var(--green);
   border-left: 4px solid var(--green);
@@ -196,7 +191,7 @@ td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character
 
 .hands-on ol, .hands-on ul { margin: 8px 0 10px 20px; }
 
-/* "how to recover if it breaks" */
+/* “做坏了怎么恢复” */
 .hands-on .undo {
   font-size: 0.86em;
   color: var(--text-muted);
@@ -205,7 +200,7 @@ td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character
   border-top: 1px dashed var(--green);
 }
 
-/* ── end-of-chapter checkpoint ── */
+/* ── 章末检查点 ── */
 .checkpoint {
   border: 1px dashed var(--primary);
   background: var(--primary-light);
@@ -227,7 +222,7 @@ td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character
 
 .checkpoint li::before { content: "☐ "; color: var(--primary); }
 
-/* ── "skippable on a first pass" mark (hangs after an h2/h3 heading) ── */
+/* ── 「第一遍可跳过」标记（挂在 h2/h3 标题后） ── */
 .skip-flag {
   display: inline-block;
   vertical-align: middle;
@@ -243,7 +238,7 @@ td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character
   letter-spacing: 0;
 }
 
-/* ── pits and warnings (purple, kept apart from the orange .callout self-Q&A) ── */
+/* ── 坑与警告（紫色，跟橙色的 .callout 自问自答区分开） ── */
 .warn {
   background: var(--purple-light);
   border-left: 3px solid var(--purple);
@@ -256,9 +251,8 @@ td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character
 .warn p + p { margin-top: 8px; }
 .warn .warn-head { font-weight: 800; color: var(--purple); }
 
-/* ── confidence pill: says whether a conclusion was run or inferred ──
-   Short labels only (e.g. "▶ ran it", "⚠️ not run"); long explanations go in the
-   prose or a .warn — never cram a whole sentence into a pill. */
+/* ── 置信度小胶囊：标注结论是实测的还是推断的 ──
+   只放短标签（如“▶ 实测”“⚠️ 未实测”）；长说明写进正文或 .warn，别塞进胶囊。 */
 .pill {
   display: inline-block;
   padding: 0 8px;
@@ -272,7 +266,7 @@ td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character
 .pill.warn { background: var(--accent-light); color: var(--accent); }
 .pill.unk  { background: var(--purple-light); color: var(--purple); }
 
-/* ── numbered steps (for flows like "how to run it" / "how to open a PR") ── */
+/* ── 编号步骤（“怎么跑起来”“怎么提 PR”这类流程） ── */
 .steps { list-style: none; counter-reset: step; margin: 16px 0 16px 4px; }
 
 .steps > li {
@@ -301,7 +295,7 @@ td code, th code { font-size: 0.92em; word-break: normal; }  /* no per-character
 
 .steps > li > strong:first-child { display: inline-block; margin-bottom: 2px; }
 
-/* ── narrow screens ── */
+/* ── 窄屏 ── */
 @media (max-width: 600px) {
   pre, .code-block pre { font-size: 0.78em; padding: 12px; }
   .code-block .hl { margin: 0 -12px; padding: 0 12px; }

@@ -22,9 +22,9 @@
 | Skill | 干什么 | 中文版 | English |
 |---|---|---|---|
 | `write4adhd-book` | 用“祛魅体”写科普文章/文档/分章科普书，产出 HTML（含图表动画）或 Markdown | [`skills-cn/write4adhd-book`](skills-cn/write4adhd-book/) | [`skills-en/write4adhd-book`](skills-en/write4adhd-book/) |
-| `write4adhd-onboard` | 软件项目的上手书：先按调查协议摸清陌生代码库，再写一本把初级开发者从“对本领域一无所知”带到“能进去改代码”的入门书。**需与 `write4adhd-book` 一起安装**——文风和模板都借它的 | [`skills-cn/write4adhd-onboard`](skills-cn/write4adhd-onboard/) | [`skills-en/write4adhd-onboard`](skills-en/write4adhd-onboard/) |
+| `write4adhd-dev-onboarding` | 软件项目的上手书：先按调查协议摸清陌生代码库，再写一本把初级开发者从“对本领域一无所知”带到“能进去改代码”的入门书。**需与 `write4adhd-book` 一起安装**——文风和模板都借它的 | [`skills-cn/write4adhd-dev-onboarding`](skills-cn/write4adhd-dev-onboarding/) | [`skills-en/write4adhd-dev-onboarding`](skills-en/write4adhd-dev-onboarding/) |
 
-skills 统一用 **`write4adhd-`** 前缀，按语言分目录存放：`skills-cn/` 是中文版，`skills-en/` 是英文版。`write4adhd-onboard` 是配套 skill：它只管“调查什么、写什么”，“怎么写”交给 `write4adhd-book`，所以要用它就把同语言的**两个目录都拷上**。
+skills 统一用 **`write4adhd-`** 前缀，按语言分目录存放：`skills-cn/` 是中文版，`skills-en/` 是英文版。`write4adhd-dev-onboarding` 是配套 skill：它只管“调查什么、写什么”，“怎么写”交给 `write4adhd-book`，所以要用它就把同语言的**两个目录都拷上**。
 
 ## 快速开始
 
@@ -37,18 +37,18 @@ cp -r skills-cn/write4adhd-book <你的项目>/.agents/skills/
 # 用户级：所有项目可用
 cp -r skills-cn/write4adhd-book ~/.agents/skills/
 
-# write4adhd-onboard 需要带上它的配套：
-cp -r skills-cn/write4adhd-book skills-cn/write4adhd-onboard <你的项目>/.agents/skills/
+# write4adhd-dev-onboarding 需要带上它的配套：
+cp -r skills-cn/write4adhd-book skills-cn/write4adhd-dev-onboarding <你的项目>/.agents/skills/
 ```
 
 然后在支持 [Agent Skills](https://agentskills.io/) 的 agent（如 pi）里：
 
 ```text
 /skill:write4adhd-book 写一篇《什么是 Docker》
-/skill:write4adhd-onboard 帮我上手一下这个项目
+/skill:write4adhd-dev-onboarding 帮我上手一下这个项目
 ```
 
-或者自然语言触发：“用祛魅体给我科普一下 XXX”；装了 `write4adhd-onboard` 之后，一句“帮我上手一下这个项目”就够——其余参数它自己推断，并在开工前把默认值报给你。
+或者自然语言触发：“用祛魅体给我科普一下 XXX”；装了 `write4adhd-dev-onboarding` 之后，一句“帮我上手一下这个项目”就够——其余参数它自己推断，并在开工前把默认值报给你。
 
 ## 仓库结构
 
@@ -59,10 +59,10 @@ write4adhd/
 │   │   ├── SKILL.md         # 入口：工作流程 + 底线规则
 │   │   ├── references/      # 文风指南、HTML 制作规范
 │   │   └── assets/          # 可直接复制的页面/书站模板
-│   └── write4adhd-onboard/  # 上手书：调查协议 + 章节蓝图 + code-kit 样式
+│   └── write4adhd-dev-onboarding/  # 上手书：调查协议 + 章节蓝图 + code-kit 样式
 ├── skills-en/               # 英文版 skills（目录结构同中文版）
 │   ├── write4adhd-book/
-│   └── write4adhd-onboard/
+│   └── write4adhd-dev-onboarding/
 ├── README.md                # English
 ├── README.zh_CN.md          # 本文件
 ├── AGENTS.md                # 给维护本仓库的 agent 的上下文
