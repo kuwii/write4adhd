@@ -612,13 +612,17 @@ footer .sep { color: var(--text-light); padding: 0 6px; }
 cp -r skills-cn/write4adhd-book &lt;你的项目&gt;/.agents/skills/
 
 <span class="cmt"># 用户级：所有项目都能用</span>
-cp -r skills-cn/write4adhd-book ~/.agents/skills/</code></pre>
+cp -r skills-cn/write4adhd-book ~/.agents/skills/
+
+<span class="cmt"># write4adhd-dev-onboarding 需要带上它的配套：</span>
+cp -r skills-cn/write4adhd-book skills-cn/write4adhd-dev-onboarding &lt;你的项目&gt;/.agents/skills/</code></pre>
 
     <p>然后在任何支持 <a href="https://agentskills.io/">Agent Skills</a> 的 agent（比如 pi）里直接点名：</p>
 
-    <pre><code>/skill:write4adhd-book 写一篇《什么是 Docker》</code></pre>
+    <pre><code>/skill:write4adhd-book 写一篇《什么是 Docker》
+/skill:write4adhd-dev-onboarding 帮我上手一下这个项目</code></pre>
 
-    <p>懒得记命令？说人话也行：“用祛魅体给我科普一下 XXX”、“给这个项目写份零基础入门文档”。</p>
+    <p>懒得记命令？说人话也行：“用祛魅体给我科普一下 XXX”；装了 <code>write4adhd-dev-onboarding</code> 之后，一句“帮我上手一下这个项目”就够——其余参数它自己推断，动手前先把默认设置报给你。</p>
 
     <div class="callout blue">
       <p><strong>“为什么是 <code>cp</code> 而不是安装？”</strong>——因为 skill 就是一堆纯文本文件：没有依赖、不联网、不动你的 shell 配置。拷进去就生效，删掉就没了，搬家就再拷一次。</p>
@@ -646,13 +650,17 @@ cp -r skills-cn/write4adhd-book ~/.agents/skills/</code></pre>
 cp -r skills-en/write4adhd-book &lt;your-project&gt;/.agents/skills/
 
 <span class="cmt"># User level: every project</span>
-cp -r skills-en/write4adhd-book ~/.agents/skills/</code></pre>
+cp -r skills-en/write4adhd-book ~/.agents/skills/
+
+<span class="cmt"># write4adhd-dev-onboarding needs its companion:</span>
+cp -r skills-en/write4adhd-book skills-en/write4adhd-dev-onboarding &lt;your-project&gt;/.agents/skills/</code></pre>
 
     <p>Then, in any agent that supports <a href="https://agentskills.io/">Agent Skills</a> (such as pi), call it by name:</p>
 
-    <pre><code>/skill:write4adhd-book write a plain-English primer on Docker</code></pre>
+    <pre><code>/skill:write4adhd-book write a plain-English primer on Docker
+/skill:write4adhd-dev-onboarding help me get up to speed on this project</code></pre>
 
-    <p>Can't be bothered with commands? Just talk to it: "explain XXX like I've never heard of it", or "write a zero-background intro to this project".</p>
+    <p>Can't be bothered with commands? Just talk to it: "explain XXX like I've never heard of it" — and once <code>write4adhd-dev-onboarding</code> is installed, a bare "help me get up to speed on this project" is enough; it infers everything else and tells you its defaults before starting.</p>
 
     <div class="callout blue">
       <p><strong>"Why a <code>cp</code> instead of an install?"</strong> — Because a skill is a pile of plain-text files: no dependencies, no network calls, nothing written into your shell config. Copy it in and it works; delete it and it's gone; moving machines means copying it again.</p>
