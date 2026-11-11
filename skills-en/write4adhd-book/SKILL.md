@@ -1,6 +1,6 @@
 ---
 name: write4adhd-book
-description: Write ADHD-friendly, jargon-free explainers, docs and chaptered "books" in the demystified style - conversational tone, short chapters, one homespun metaphor running through the whole piece, a bolded closing line for every chapter. Output is a single self-contained HTML page, a multi-page HTML book site (inline Canvas diagrams/animations, light & dark themes), or Markdown. Use when the user asks for a plain-English explainer, primer, crash course, ELI5, demystification or beginner-friendly intro to a technical concept or project, or explicitly asks for the "write4adhd-book / demystified style". This skill builds on write4adhd-writing (the plain-writing base layer) and must be installed together with it. All prose you produce with this skill is in English.
+description: Write ADHD-friendly, jargon-free explainers, docs and chaptered "books" in the demystified style - conversational tone, short chapters, one homespun metaphor running through the whole piece, a bolded closing line for every chapter. Output is a single self-contained HTML page, a multi-page HTML book site (inline Canvas diagrams/animations, light & dark themes), or Markdown. Use when the user asks for a plain-English explainer, primer, crash course, ELI5, demystification or beginner-friendly intro to a technical concept or project, or explicitly asks for the "write4adhd-book / demystified style". This skill builds on write4adhd-writing (the plain-writing base layer) and must be installed together with it.
 ---
 
 # write4adhd-book: writing in the demystified style
@@ -38,3 +38,5 @@ This skill's rules are additions on top of it; where they conflict, this skill w
 2. **Every chapter ends with one bolded closing line** that compresses the chapter into something the reader can carry away — an instant "I got it" reward. Let the shape follow the content: **never reuse the same template every chapter** (three "Bottom line:" chapters in a row reads like a machine), and when it won't compress into one pretty sentence, two plain accurate ones are better.
 3. **The three-step term intro**: describe the phenomenon in plain words first → then name the jargon (bolded, plus the original term) → stop right there. No implementation details, no edge cases.
 4. **Intuition over formulas.** A cheesy metaphor beats an abstraction every time. On questions that are genuinely unsettled, say "nobody knows" out loud instead of faking authority.
+
+Output language: if a global instruction (AGENTS.md, system prompt) states a language requirement, follow it; otherwise match the language the user used in their prompt.

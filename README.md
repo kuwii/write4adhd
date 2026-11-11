@@ -17,7 +17,7 @@ You bounce off walls of text, and halfway through a long post you've forgotten w
 
 ## Skills
 
-Every skill comes in **two language variants**: identical rules and templates, only the output language differs. Pick the one that writes in your language — they share a name, so install just that one.
+Every skill comes in **two language variants**: identical rules and templates, differing only in the language the skill's own docs are written in. Which one you install doesn't lock in the output language — your deliverable follows your global instructions (if any) or the language of your prompt. Pick the variant you're most comfortable reading; they share a name, so install just that one.
 
 | Skill | What it does | 中文 | English |
 |---|---|---|---|
@@ -25,7 +25,7 @@ Every skill comes in **two language variants**: identical rules and templates, o
 | `write4adhd-book` | Explainers, docs and chaptered books in the demystified style, delivered as HTML (with animated diagrams) or Markdown. **Install it together with `write4adhd-writing`** — the plain-writing base layer lives there | [`skills-cn/write4adhd-book`](skills-cn/write4adhd-book/) | [`skills-en/write4adhd-book`](skills-en/write4adhd-book/) |
 | `write4adhd-dev-onboarding` | Onboarding books for a software project: surveys an unfamiliar codebase first, then writes a primer that takes a junior developer from "knows nothing about this domain" to "can change the code". **Install it together with `write4adhd-book`** (and therefore writing) — the flourish and templates come from book, the plain base from writing | [`skills-cn/write4adhd-dev-onboarding`](skills-cn/write4adhd-dev-onboarding/) | [`skills-en/write4adhd-dev-onboarding`](skills-en/write4adhd-dev-onboarding/) |
 
-All skills carry the **`write4adhd-`** prefix and live in a per-language directory: `skills-cn/` writes Chinese, `skills-en/` writes English. The three form one dependency chain: `write4adhd-writing` owns *plain and short* (conclusion first, plain words, the ADHD-friendly layout rules), `write4adhd-book` adds the explainer-book form and flourish on top of it, and `write4adhd-dev-onboarding` only says what to investigate and what to write. Pick by what you want to write: only reports/docs → install writing; explainer books → writing + book; onboarding books → all three, same language.
+All skills carry the **`write4adhd-`** prefix and live in a per-language directory: `skills-cn/` holds the Chinese-documented skills, `skills-en/` the English-documented ones. The three form one dependency chain: `write4adhd-writing` owns *plain and short* (conclusion first, plain words, the ADHD-friendly layout rules), `write4adhd-book` adds the explainer-book form and flourish on top of it, and `write4adhd-dev-onboarding` only says what to investigate and what to write. Pick by what you want to write: only reports/docs → install writing; explainer books → writing + book; onboarding books → all three, same language.
 
 ## Quick start
 

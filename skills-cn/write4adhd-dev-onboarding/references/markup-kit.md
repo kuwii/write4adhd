@@ -79,7 +79,7 @@ pom.xml        <span class="c"># Maven 总配置，模块列表在这里</span>
 <div class="table-wrap">
   <table class="term-table striped">
     <thead>
-      <tr><th>术语</th><th>人话</th><th>英文</th><th>代码里叫什么</th><th>定义位置</th></tr>
+      <tr><th>术语</th><th>人话</th><th>原文</th><th>代码里叫什么</th><th>定义位置</th></tr>
     </thead>
     <tbody>
       <tr>

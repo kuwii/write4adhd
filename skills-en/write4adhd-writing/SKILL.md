@@ -1,6 +1,6 @@
 ---
 name: write4adhd-writing
-description: Write plain, ADHD-friendly documents people actually finish reading: research reports, experiment reports, summaries, memos, technical notes. Conclusion first, plain words instead of jargon, short paragraphs, no undifferentiated information dumps. Use when the user asks for a report, a summary, a memo, or "turn this into a document", or names write4adhd-writing. For beginner explainers and chaptered books, use write4adhd-book instead. All prose you produce with this skill is in English.
+description: Write plain, ADHD-friendly documents people actually finish reading: research reports, experiment reports, summaries, memos, technical notes. Conclusion first, plain words instead of jargon, short paragraphs, no undifferentiated information dumps. Use when the user asks for a report, a summary, a memo, or "turn this into a document", or names write4adhd-writing. For beginner explainers and chaptered books, use write4adhd-book instead.
 ---
 
 # write4adhd-writing: plain writing
@@ -36,4 +36,4 @@ The user wants a beginner explainer or a chaptered book → use `write4adhd-book
 3. **The point first**: conclusion up top, effort weighted by importance, never even-handed across everything; delete every urge to be exhaustive.
 4. **No faking authority**: for conclusions you're not sure about, mark the confidence or write "not confirmed yet", and give the reader a way to check — never dress up a guess as a fact.
 
-All prose you produce with this skill is in English.
+Output language: if a global instruction (AGENTS.md, system prompt) states a language requirement, follow it; otherwise match the language the user used in their prompt.

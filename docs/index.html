@@ -604,7 +604,7 @@ footer .sep { color: var(--text-light); padding: 0 6px; }
       <span class="flow-step">③ 拿到能直接打开的成品</span>
     </div>
 
-    <p>每个 skill 都有<strong>中英两个版本</strong>：规则和模板完全一样，区别只在产出文档的语言。两者同名，<strong>装一个就够</strong>——要写中文文档就拷 <code>skills-cn/</code> 的，要写英文就拷 <code>skills-en/</code> 的。</p>
+    <p>每个 skill 都有<strong>中英两个版本</strong>：写法规范和模板完全一样，区别只在 skill 自身文档的语言。装哪版不决定产出文档的语言——产出跟随全局指令（如有）或你提示词所用的语言。两者同名，<strong>装一个就够</strong>——挑你读着顺眼的那版。</p>
 
     <p>现在有三个 skill，是一条配套链：<code>write4adhd-writing</code> 写<strong>平实文档</strong>（调研报告、实验报告、总结、备忘——结论先行、说人话、不堆料）；<code>write4adhd-book</code> 在它之上写科普，花活和模板都在，但平实底层借 writing；<code>write4adhd-dev-onboarding</code> 给软件项目写<strong>上手书</strong>——先按调查协议摸清一个陌生代码库，再写一本把新人从“对本领域一无所知”带到“能进去改代码”的入门书。安装按用途对号入座：只写文档 → 拷 writing；写科普 → writing + book；写上手书 → 三个一起拷。</p>
 
@@ -645,7 +645,7 @@ cp -r skills-cn/write4adhd-writing skills-cn/write4adhd-book skills-cn/write4adh
       <span class="flow-step">③ Open the finished artifact</span>
     </div>
 
-    <p>Every skill ships in <strong>two language variants</strong>: identical rules and templates, the only difference is the language it writes in. They share a name, so <strong>install just one</strong> — <code>skills-cn/</code> writes Chinese, <code>skills-en/</code> writes English.</p>
+    <p>Every skill ships in <strong>two language variants</strong>: identical rules and templates, differing only in the language the skill's own docs are written in. Which one you install doesn't lock in the output language — your deliverable follows your global instructions (if any) or the language of your prompt. They share a name, so <strong>install just one</strong> — pick the variant you're most comfortable reading.</p>
 
     <p>There are three skills now, in a dependency chain: <code>write4adhd-writing</code> writes <strong>plain documents</strong> (research reports, experiment reports, summaries, memos — conclusion first, plain words, no padding); <code>write4adhd-book</code> writes explainers on top of it — the flourishes and templates live there, the plain base comes from writing; and <code>write4adhd-dev-onboarding</code> writes <strong>onboarding books</strong> for software projects — it surveys an unfamiliar codebase with a fixed protocol first, then writes the primer that takes a newcomer from "knows nothing about this domain" to "can change the code". Pick by what you want to write: only docs → writing; explainers → writing + book; onboarding books → all three.</p>
 
