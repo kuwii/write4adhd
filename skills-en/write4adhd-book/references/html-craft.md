@@ -53,7 +53,7 @@ Below is the single-page format. A book site chapter page has the same skeleton,
   <script> Canvas helpers + diagram/animation code + theme-switch redraws </script>
 ```
 
-The subtitle must match the style, and it is where the core metaphor comes in (see rule 3 of the style guide), e.g.: "Turns out it's just a locker you rent inside someone else's gym: cloud storage in one sentence, including where your files actually sit."
+The subtitle must match the style, and it is where the core metaphor comes in (see section 2 of the style guide), e.g.: "Turns out it's just a locker you rent inside someone else's gym: cloud storage in one sentence, including where your files actually sit."
 
 ## Design conventions
 
@@ -86,7 +86,7 @@ The subtitle must match the style, and it is where the core metaphor comes in (s
 - Hand-draw everything with `<canvas>` — no SVG images, no external images. The design space is fixed (about 680 wide, 280–360 tall depending on content); `setupCanvas()` handles DPR and scales proportionally on narrow screens.
 - Colors come from `getColors()`, which reads the current theme's CSS variables, **so diagrams stay legible in both light and dark**. On theme switch, every diagram redraws through the `__redraws` registry.
 - Reuse the helpers: `roundRect` / `drawBox` (rounded box with multi-line text) / `drawArrow` (connector with an arrowhead) / `drawLabel` (multi-line label). Keep the visual language "sketchy diagram": rounded boxes + arrows + big labels. Don't chase polish, and feel free to state "illustrative, not to scale" in the caption.
-- At least one diagram per chapter, explaining the core mechanism. Every caption must be plain words saying what the diagram wants you to see (see rule 8 in the style guide).
+- At least one diagram per chapter, explaining the core mechanism. Every caption must be plain words saying what the diagram wants you to see (see section 7 in the style guide).
 
 ## Animation conventions (ADHD-friendly)
 

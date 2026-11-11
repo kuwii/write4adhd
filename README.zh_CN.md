@@ -21,46 +21,52 @@
 
 | Skill | 干什么 | 中文版 | English |
 |---|---|---|---|
-| `write4adhd-book` | 用“祛魅体”写科普文章/文档/分章科普书，产出 HTML（含图表动画）或 Markdown | [`skills-cn/write4adhd-book`](skills-cn/write4adhd-book/) | [`skills-en/write4adhd-book`](skills-en/write4adhd-book/) |
-| `write4adhd-dev-onboarding` | 软件项目的上手书：先按调查协议摸清陌生代码库，再写一本把初级开发者从“对本领域一无所知”带到“能进去改代码”的入门书。**需与 `write4adhd-book` 一起安装**——文风和模板都借它的 | [`skills-cn/write4adhd-dev-onboarding`](skills-cn/write4adhd-dev-onboarding/) | [`skills-en/write4adhd-dev-onboarding`](skills-en/write4adhd-dev-onboarding/) |
+| `write4adhd-writing` | 平实体：对 ADHD 友好的通用成文文档——调研报告、实验报告、总结、备忘、技术说明。结论先行、说人话、拒绝无差别堆砌信息 | [`skills-cn/write4adhd-writing`](skills-cn/write4adhd-writing/) | [`skills-en/write4adhd-writing`](skills-en/write4adhd-writing/) |
+| `write4adhd-book` | 用“祛魅体”写科普文章/文档/分章科普书，产出 HTML（含图表动画）或 Markdown。**需与 `write4adhd-writing` 一起安装**——平实写作的底层规则在它 | [`skills-cn/write4adhd-book`](skills-cn/write4adhd-book/) | [`skills-en/write4adhd-book`](skills-en/write4adhd-book/) |
+| `write4adhd-dev-onboarding` | 软件项目的上手书：先按调查协议摸清陌生代码库，再写一本把初级开发者从“对本领域一无所知”带到“能进去改代码”的入门书。**需与 `write4adhd-book` 一起安装**（连带 writing）——花活和模板借 book，平实底层借 writing | [`skills-cn/write4adhd-dev-onboarding`](skills-cn/write4adhd-dev-onboarding/) | [`skills-en/write4adhd-dev-onboarding`](skills-en/write4adhd-dev-onboarding/) |
 
-skills 统一用 **`write4adhd-`** 前缀，按语言分目录存放：`skills-cn/` 是中文版，`skills-en/` 是英文版。`write4adhd-dev-onboarding` 是配套 skill：它只管“调查什么、写什么”，“怎么写”交给 `write4adhd-book`，所以要用它就把同语言的**两个目录都拷上**。
+skills 统一用 **`write4adhd-`** 前缀，按语言分目录存放：`skills-cn/` 是中文版，`skills-en/` 是英文版。三个 skill 是一条配套链：`write4adhd-writing` 管“怎么把话写平实、怎么写短”，`write4adhd-book` 在它之上加科普书的形式与花活，`write4adhd-dev-onboarding` 只管调查什么、写什么。安装按用途对号入座：只写报告/文档 → 装 writing；写科普书 → 装 writing + book；写上手书 → 同语言三个都装。
 
 ## 快速开始
 
 把对应语言的 skill 目录拷到你的项目里（或用户级目录，全局可用）：
 
 ```bash
-# 项目级：仅当前项目可用（英文版把 skills-cn 换成 skills-en）
-cp -r skills-cn/write4adhd-book <你的项目>/.agents/skills/
+# 写报告/文档（平实体）：
+cp -r skills-cn/write4adhd-writing <你的项目>/.agents/skills/
 
-# 用户级：所有项目可用
-cp -r skills-cn/write4adhd-book ~/.agents/skills/
+# 写科普书（带上底层写作层）：
+cp -r skills-cn/write4adhd-writing skills-cn/write4adhd-book <你的项目>/.agents/skills/
 
-# write4adhd-dev-onboarding 需要带上它的配套：
-cp -r skills-cn/write4adhd-book skills-cn/write4adhd-dev-onboarding <你的项目>/.agents/skills/
+# 写上手书（三层全要；英文版把 skills-cn 换成 skills-en）：
+cp -r skills-cn/write4adhd-writing skills-cn/write4adhd-book skills-cn/write4adhd-dev-onboarding <你的项目>/.agents/skills/
+
+# 想全局可用：把 <你的项目>/.agents/skills/ 换成 ~/.agents/skills/
 ```
 
 然后在支持 [Agent Skills](https://agentskills.io/) 的 agent（如 pi）里：
 
 ```text
+/skill:write4adhd-writing 把这次调研整理成一份报告
 /skill:write4adhd-book 写一篇《什么是 Docker》
 /skill:write4adhd-dev-onboarding 帮我上手一下这个项目
 ```
 
-或者自然语言触发：“用祛魅体给我科普一下 XXX”；装了 `write4adhd-dev-onboarding` 之后，一句“帮我上手一下这个项目”就够——其余参数它自己推断，并在开工前把默认值报给你。
+或者自然语言触发：“把这次调研整理成一份报告”（writing）、“用祛魅体给我科普一下 XXX”（book）；装了 `write4adhd-dev-onboarding` 之后，一句“帮我上手一下这个项目”就够——其余参数它自己推断，并在开工前把默认值报给你。
 
 ## 仓库结构
 
 ```text
 write4adhd/
 ├── skills-cn/               # 中文版 skills
+│   ├── write4adhd-writing/  # 平实体写作层：SKILL.md + references/
 │   ├── write4adhd-book/
 │   │   ├── SKILL.md         # 入口：工作流程 + 底线规则
 │   │   ├── references/      # 文风指南、HTML 制作规范
 │   │   └── assets/          # 可直接复制的页面/书站模板
 │   └── write4adhd-dev-onboarding/  # 上手书：调查协议 + 章节蓝图 + code-kit 样式
 ├── skills-en/               # 英文版 skills（目录结构同中文版）
+│   ├── write4adhd-writing/
 │   ├── write4adhd-book/
 │   └── write4adhd-dev-onboarding/
 ├── README.md                # English

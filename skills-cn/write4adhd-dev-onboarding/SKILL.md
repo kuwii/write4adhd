@@ -13,12 +13,12 @@ description: 为软件项目写开发者上手文档/新人入门书：先按六
 
 ## 和 write4adhd-book 的分工
 
-本 skill 与 `write4adhd-book` 配套使用，职责不重叠：
+本 skill 与 `write4adhd-book` 配套使用（book 又装在 `write4adhd-writing` 之上），职责不重叠：
 
-- **`write4adhd-book` 管"怎么写"**：祛魅体文风、ADHD 友好规则、HTML/书站模板与制作规范。
+- **`write4adhd-book` 管"科普书的形式与花活 + 制作"**：祛魅体花活（土味比喻、收束句、术语三步法）、HTML/书站模板与制作规范；说人话、抓重点的平实基础层在 `write4adhd-writing`。
 - **本 skill 管"调查什么、写什么"**：怎么摸清一个陌生代码库，以及一本上手书的章节蓝图与硬规矩。
 
-**动笔前必须完整读一遍 `write4adhd-book`**：从 agent 的 skills 列表里找到它的 SKILL.md，连同它的 `references/style-guide.md` 和 `references/html-craft.md` 一起读，然后按它的规则写作。
+**动笔前必须完整读一遍 `write4adhd-book`**：从 agent 的 skills 列表里找到它的 SKILL.md，连同它的 `references/style-guide.md` 和 `references/html-craft.md` 一起读，然后按它的规则写作。它自己还要求完整读一遍 `write4adhd-writing`（SKILL.md 与 `references/plain-style.md`）——一并读掉；任何一层找不到，就停下来告诉用户补装。
 
 本 skill 的规则是**在它之上的叠加与覆盖**，冲突时以本 skill 为准（读者画像不同）。覆盖条款只有 5 条，见 `references/book-blueprint.md` 第 0 节；其余全部继承。
 
@@ -44,7 +44,7 @@ description: 为软件项目写开发者上手文档/新人入门书：先按六
 2. **调查**：读 `references/survey-protocol.md`。**第一件事是探环境**：从构建配置推断工具链（`pom.xml`→java/maven、`build.sbt`→sbt、`package.json`→node、`go.mod`→go、`pyproject.toml`→python……），用 `command -v` 逐个探测，结果记进笔记第 6 层；缺什么，从这一刻起自动适用“⚠️ 未实测”标注规则——**不需要用户告诉你机器上没有什么**。然后按六层协议摸清代码库，结论写进调查笔记（复制 `assets/survey-notes-template.md` 到草稿区，边查边记）。**没有笔记不许动笔**——上手书里的每句技术断言，都要能回溯到某次真实的检索、阅读或运行。
 3. **定脊柱、定清单、定部分**：读 `references/book-blueprint.md`。先定端到端主线（脊柱，深度轴）；再核对子系统清单的覆盖与篇幅分配（广度轴：每个子系统至少第一层上下文，用户点名的领域拿整章）；然后按章节蓝图裁出目录并**划成 4~6 个部分**；最后写目录页（按部分分组，每章一句钩子 + 一句“读完你能做到什么”）。
 4. **写作**：按 `write4adhd-book` 的文风与制作规范逐页产出。HTML 形态**再读 `references/markup-kit.md`**，并**额外复制本 skill 的 `assets/code-kit.css`**（书站：与 `style.css` 并列再加一个 `<link>`；单页：把它的内容并入内联 `<style>`），它提供代码块、文件树、表格、动手任务框等开发者文档组件，复用同一套 CSS 变量。
-5. **自查**：先过 `write4adhd-book` 的自查清单，再过 `references/book-blueprint.md` 末尾的**上岗清单**——尤其是"代码引用逐条回仓库复核"和"命令是否实测过"。
+5. **自查**：先过 `write4adhd-writing` 的自查清单，再过 `write4adhd-book` 的自查清单，最后过 `references/book-blueprint.md` 末尾的**上岗清单**——尤其是"代码引用逐条回仓库复核"和"命令是否实测过"。
 6. **验收**：最靠谱的方式是让一个没接触过该项目的人（或让另一个 agent 扮演"刚学会编程、对该领域一无所知"的读者）从头读一遍，并真的去完成书里的动手任务。读不下去、任务做不出来，是书的问题，不是读者的问题。
 
 ## 不可妥协的七条底线
@@ -57,6 +57,6 @@ description: 为软件项目写开发者上手文档/新人入门书：先按六
 6. **分层阅读**：每节标出“必须懂”与“第一遍可跳过”，用分层控制读者的负担，而不是靠删内容。
 7. **广度不欠账**。祛魅体控制的是阅读门槛，不是知识总量：读者要成为项目某一部分的 owner，脊柱之外的子系统、全局形状、核心类的职责面都必须有落点（整章 / 巡览一节 / 地图一句话+词典一行）。欠的账用**加章节、分部分**来还，不靠删知识把书变短。
 
-外加继承 `write4adhd-book` 的五条底线（一个核心比喻、短、每章收束句、术语三步法、直觉优先），只有一处场景化调整：**读者是程序员，类比可以用他已经写过的代码和用过的工具**（for 循环、git、HTTP 请求、数据库索引），但仍然需要一个生活化的核心比喻来承载整体架构。
+外加继承 `write4adhd-writing` 的全部规则（说人话、短、抓重点、ADHD 排版硬规则）和 `write4adhd-book` 的四条底线（一个核心比喻、每章收束句、术语三步法、直觉优先），只有一处场景化调整：**读者是程序员，类比可以用他已经写过的代码和用过的工具**（for 循环、git、HTTP 请求、数据库索引），但仍然需要一个生活化的核心比喻来承载整体架构。
 
 本 skill 产出的正文一律为中文。

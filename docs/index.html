@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>write4adhd · 给 coding agent 的写作小抄</title>
-<meta name="description" content="write4adhd：一套 agent skills，把“为没耐心的读者写作”的规矩塞进你的 coding agent，让它产出短章节、土味比喻、每章一句收束、带 Canvas 动画的科普文档。">
+<meta name="description" content="write4adhd：一套 agent skills，把“为没耐心的读者写作”的规矩塞进你的 coding agent，让它产出抓重点的平实报告、短章节土味比喻的科普书、带 Canvas 动画的上手书。">
 <!-- 防闪烁：首次绘制前恢复主题与语言 -->
 <script>
 (function () {
@@ -490,7 +490,7 @@ footer .sep { color: var(--text-light); padding: 0 6px; }
 
   <h1>write4adhd</h1>
 
-  <p class="subtitle i18n zh">把一张“写作小抄”塞进你的 coding agent 兜里，让它写出你真的读得下去的科普。</p>
+  <p class="subtitle i18n zh">把一张“写作小抄”塞进你的 coding agent 兜里，让它写出你真的读得下去的文档。</p>
   <p class="subtitle i18n en">Slip a writing cheat-sheet into your coding agent's pocket, and it starts producing docs you'll actually finish.</p>
 
   <nav class="site-nav">
@@ -599,30 +599,33 @@ footer .sep { color: var(--text-light); padding: 0 6px; }
     <p>回忆一下：skill 就是个文件夹，没有安装程序。所以“用起来”一共三步：</p>
 
     <div class="flow-list">
-      <span class="flow-step">① 拷一个 skill 目录</span><span class="arrow-sep">→</span>
+      <span class="flow-step">① 拷 skill 目录</span><span class="arrow-sep">→</span>
       <span class="flow-step">② 跟 agent 说人话</span><span class="arrow-sep">→</span>
-      <span class="flow-step">③ 拿到能直接打开的 HTML</span>
+      <span class="flow-step">③ 拿到能直接打开的成品</span>
     </div>
 
     <p>每个 skill 都有<strong>中英两个版本</strong>：规则和模板完全一样，区别只在产出文档的语言。两者同名，<strong>装一个就够</strong>——要写中文文档就拷 <code>skills-cn/</code> 的，要写英文就拷 <code>skills-en/</code> 的。</p>
 
-    <p>现在有两个 skill：<code>write4adhd-book</code> 写科普；<code>write4adhd-dev-onboarding</code> 给软件项目写<strong>上手书</strong>——先按调查协议摸清一个陌生代码库，再写一本把新人从“对本领域一无所知”带到“能进去改代码”的入门书。后者是前者的配套：文风和模板都借前者的，所以要装就两个一起拷。</p>
+    <p>现在有三个 skill，是一条配套链：<code>write4adhd-writing</code> 写<strong>平实文档</strong>（调研报告、实验报告、总结、备忘——结论先行、说人话、不堆料）；<code>write4adhd-book</code> 在它之上写科普，花活和模板都在，但平实底层借 writing；<code>write4adhd-dev-onboarding</code> 给软件项目写<strong>上手书</strong>——先按调查协议摸清一个陌生代码库，再写一本把新人从“对本领域一无所知”带到“能进去改代码”的入门书。安装按用途对号入座：只写文档 → 拷 writing；写科普 → writing + book；写上手书 → 三个一起拷。</p>
 
-    <pre><code><span class="cmt"># 项目级：只有当前项目能用（英文版把 skills-cn 换成 skills-en）</span>
-cp -r skills-cn/write4adhd-book &lt;你的项目&gt;/.agents/skills/
+    <pre><code><span class="cmt"># 写报告/文档（平实体）：</span>
+cp -r skills-cn/write4adhd-writing &lt;你的项目&gt;/.agents/skills/
 
-<span class="cmt"># 用户级：所有项目都能用</span>
-cp -r skills-cn/write4adhd-book ~/.agents/skills/
+<span class="cmt"># 写科普书（带上底层写作层）：</span>
+cp -r skills-cn/write4adhd-writing skills-cn/write4adhd-book &lt;你的项目&gt;/.agents/skills/
 
-<span class="cmt"># write4adhd-dev-onboarding 需要带上它的配套：</span>
-cp -r skills-cn/write4adhd-book skills-cn/write4adhd-dev-onboarding &lt;你的项目&gt;/.agents/skills/</code></pre>
+<span class="cmt"># 写上手书（三层全要；英文版把 skills-cn 换成 skills-en）：</span>
+cp -r skills-cn/write4adhd-writing skills-cn/write4adhd-book skills-cn/write4adhd-dev-onboarding &lt;你的项目&gt;/.agents/skills/
+
+<span class="cmt"># 想全局可用：把 &lt;你的项目&gt;/.agents/skills/ 换成 ~/.agents/skills/</span></code></pre>
 
     <p>然后在任何支持 <a href="https://agentskills.io/">Agent Skills</a> 的 agent（比如 pi）里直接点名：</p>
 
-    <pre><code>/skill:write4adhd-book 写一篇《什么是 Docker》
+    <pre><code>/skill:write4adhd-writing 把这次调研整理成一份报告
+/skill:write4adhd-book 写一篇《什么是 Docker》
 /skill:write4adhd-dev-onboarding 帮我上手一下这个项目</code></pre>
 
-    <p>懒得记命令？说人话也行：“用祛魅体给我科普一下 XXX”；装了 <code>write4adhd-dev-onboarding</code> 之后，一句“帮我上手一下这个项目”就够——其余参数它自己推断，动手前先把默认设置报给你。</p>
+    <p>懒得记命令？说人话也行：“把这次调研整理成一份报告”（writing）、“用祛魅体给我科普一下 XXX”（book）；装了 <code>write4adhd-dev-onboarding</code> 之后，一句“帮我上手一下这个项目”就够——其余参数它自己推断，动手前先把默认设置报给你。</p>
 
     <div class="callout blue">
       <p><strong>“为什么是 <code>cp</code> 而不是安装？”</strong>——因为 skill 就是一堆纯文本文件：没有依赖、不联网、不动你的 shell 配置。拷进去就生效，删掉就没了，搬家就再拷一次。</p>
@@ -637,30 +640,33 @@ cp -r skills-cn/write4adhd-book skills-cn/write4adhd-dev-onboarding &lt;你的�
     <p>Remember: a skill is just a folder — there's no installer. So "getting started" is three steps:</p>
 
     <div class="flow-list">
-      <span class="flow-step">① Copy one skill folder</span><span class="arrow-sep">→</span>
+      <span class="flow-step">① Copy the skill folder(s)</span><span class="arrow-sep">→</span>
       <span class="flow-step">② Ask in plain words</span><span class="arrow-sep">→</span>
-      <span class="flow-step">③ Open the HTML it hands back</span>
+      <span class="flow-step">③ Open the finished artifact</span>
     </div>
 
     <p>Every skill ships in <strong>two language variants</strong>: identical rules and templates, the only difference is the language it writes in. They share a name, so <strong>install just one</strong> — <code>skills-cn/</code> writes Chinese, <code>skills-en/</code> writes English.</p>
 
-    <p>There are two skills now: <code>write4adhd-book</code> writes explainers; <code>write4adhd-dev-onboarding</code> writes <strong>onboarding books</strong> for software projects — it surveys an unfamiliar codebase with a fixed protocol first, then writes the primer that takes a newcomer from "knows nothing about this domain" to "can change the code". The second is a companion of the first — it borrows its voice and templates — so copy both or neither.</p>
+    <p>There are three skills now, in a dependency chain: <code>write4adhd-writing</code> writes <strong>plain documents</strong> (research reports, experiment reports, summaries, memos — conclusion first, plain words, no padding); <code>write4adhd-book</code> writes explainers on top of it — the flourishes and templates live there, the plain base comes from writing; and <code>write4adhd-dev-onboarding</code> writes <strong>onboarding books</strong> for software projects — it surveys an unfamiliar codebase with a fixed protocol first, then writes the primer that takes a newcomer from "knows nothing about this domain" to "can change the code". Pick by what you want to write: only docs → writing; explainers → writing + book; onboarding books → all three.</p>
 
-    <pre><code><span class="cmt"># Project level: this project only (use skills-cn for the Chinese skill)</span>
-cp -r skills-en/write4adhd-book &lt;your-project&gt;/.agents/skills/
+    <pre><code><span class="cmt"># Reports / docs (plain style):</span>
+cp -r skills-en/write4adhd-writing &lt;your-project&gt;/.agents/skills/
 
-<span class="cmt"># User level: every project</span>
-cp -r skills-en/write4adhd-book ~/.agents/skills/
+<span class="cmt"># Explainer books (bring the base writing layer along):</span>
+cp -r skills-en/write4adhd-writing skills-en/write4adhd-book &lt;your-project&gt;/.agents/skills/
 
-<span class="cmt"># write4adhd-dev-onboarding needs its companion:</span>
-cp -r skills-en/write4adhd-book skills-en/write4adhd-dev-onboarding &lt;your-project&gt;/.agents/skills/</code></pre>
+<span class="cmt"># Onboarding books (all three layers; use skills-cn for the Chinese skills):</span>
+cp -r skills-en/write4adhd-writing skills-en/write4adhd-book skills-en/write4adhd-dev-onboarding &lt;your-project&gt;/.agents/skills/
+
+<span class="cmt"># Available in every project: replace &lt;your-project&gt;/.agents/skills/ with ~/.agents/skills/</span></code></pre>
 
     <p>Then, in any agent that supports <a href="https://agentskills.io/">Agent Skills</a> (such as pi), call it by name:</p>
 
-    <pre><code>/skill:write4adhd-book write a plain-English primer on Docker
+    <pre><code>/skill:write4adhd-writing turn this survey into a report
+/skill:write4adhd-book write a plain-English primer on Docker
 /skill:write4adhd-dev-onboarding help me get up to speed on this project</code></pre>
 
-    <p>Can't be bothered with commands? Just talk to it: "explain XXX like I've never heard of it" — and once <code>write4adhd-dev-onboarding</code> is installed, a bare "help me get up to speed on this project" is enough; it infers everything else and tells you its defaults before starting.</p>
+    <p>Can't be bothered with commands? Just talk to it: "turn this research into a report" (writing), "explain XXX like I've never heard of it" (book) — and once <code>write4adhd-dev-onboarding</code> is installed, a bare "help me get up to speed on this project" is enough; it infers everything else and tells you its defaults before starting.</p>
 
     <div class="callout blue">
       <p><strong>"Why a <code>cp</code> instead of an install?"</strong> — Because a skill is a pile of plain-text files: no dependencies, no network calls, nothing written into your shell config. Copy it in and it works; delete it and it's gone; moving machines means copying it again.</p>
@@ -738,8 +744,8 @@ var UI = {
   step:   ['下一步 ▸', 'Next step ▸'],
   reset:  ['↺ 重播', '↺ Replay'],
   title:  ['write4adhd · 给 coding agent 的写作小抄', 'write4adhd · a writing cheat-sheet for your coding agent'],
-  desc:   ['write4adhd：一套 agent skills，把“为没耐心的读者写作”的规矩塞进你的 coding agent，让它产出短章节、土味比喻、每章一句收束、带 Canvas 动画的科普文档。',
-           'write4adhd: a set of agent skills that teaches your coding agent to write for readers who won\'t sit still — short chapters, homespun metaphors, a closing line per chapter, animated Canvas diagrams.'],
+  desc:   ['write4adhd：一套 agent skills，把“为没耐心的读者写作”的规矩塞进你的 coding agent，让它产出抓重点的平实报告、短章节土味比喻的科普书、带 Canvas 动画的上手书。',
+           'write4adhd: a set of agent skills that teaches your coding agent to write for readers who won\'t sit still — plain, point-first reports, short-chapter explainers with one homespun metaphor, and onboarding books with animated Canvas diagrams.'],
   github: ['在 GitHub 上查看仓库', 'View the repository on GitHub'],
   light:  ['亮色模式', 'Light mode'],
   dark:   ['暗色模式', 'Dark mode'],

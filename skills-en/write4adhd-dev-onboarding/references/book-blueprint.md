@@ -2,13 +2,13 @@
 
 This document says **what to write**: the book's skeleton, what every chapter must contain, how to present code and commands, and the pre-delivery onboarding checklist.
 
-**How to write** (voice, ADHD-friendly rules, HTML/book-site craft) is not here — that is `write4adhd-book`'s job. Before writing, read its SKILL.md and its `references/style-guide.md` and `references/html-craft.md` in full; this document's rules stack on top of them.
+**How to write** (plain writing, the flourishes, ADHD-friendly rules, HTML/book-site craft) is not here — that is the job of the two layers `write4adhd-writing` and `write4adhd-book`. Before writing, read `write4adhd-writing`'s SKILL.md and `references/plain-style.md` in full, then `write4adhd-book`'s SKILL.md, `references/style-guide.md` and `references/html-craft.md` in full; this document's rules stack on top of both layers.
 
 **Correct one easy mistake first**: the demystified style controls the **reading barrier**, not the **amount of knowledge**. The reader is going to become the owner of part of this project, so "accessible style" never means "shallower content" — the subsystems that must be covered, the structures that must be explained, the responsibility surfaces that must be given in full are all debts you must pay; you pay them by **adding chapters and grouping them into parts**, never by deleting knowledge to make the book shorter. Inside a single chapter, stay short and conversational; the whole book may be long.
 
-## 0. The five overrides of write4adhd-book
+## 0. The five overrides (written on top of both layers)
 
-Only these five differ. Everything else (paragraphs ≤ 4 lines, a closing line per chapter, the three-step term intro, soft recaps, plain-words captions, TOC hooks, the navigation trio, Canvas diagram rules, animation never holding attention hostage…) is **inherited unchanged**.
+Only these five differ. Everything else — the `write4adhd-writing` layer (plain words, paragraphs ≤ 4 lines, conclusion first, the layout hard rules…) and the `write4adhd-book` layer (a closing line per chapter, the three-step term intro, soft recaps, plain-words captions, TOC hooks, the navigation trio, Canvas diagram rules, animation never holding attention hostage…) — is **inherited unchanged**.
 
 1. **"Stop right there, no implementation details" → you do explain implementation details.** The first two steps of the three-step term intro stay (plain-words phenomenon first, then the jargon + original term); step three becomes: **land the implementation on a concrete location** — which file defines this concept, who creates it, who consumes it, what its public surface looks like. Details must appear attached to code locations; no discussing them in mid-air.
 2. **"Never explain a technical concept with another technical concept" → you may use what the reader already knows.** The reader is a junior programmer; the `for` loop they've written, the `git` they've used, the HTTP request they've sent, the database index they've built are the best anchors — use them first. But **the book still needs one homespun, everyday core metaphor** to carry the overall architecture (a construction site, a parcel sorting hub, a restaurant kitchen…); technical analogies are for local mechanisms only.
@@ -196,7 +196,7 @@ If the book will be committed as project documentation (`docs/onboarding/` or si
 - The whole book: **12–20 pages + 1–2 appendices**, grouped into **4–6 parts**. Under 12 pages usually means a breadth debt (check against the subsystem inventory); over 20 means it should become a second book (e.g. "advanced: performance and tuning").
 - Code blocks across the book stay under 1/3 of the prose volume. More code is not more useful — structural information belongs in tables and diagrams (section 5); code is quoted only for **the snippets that change the reader's mental model**.
 
-## 11. Onboarding checklist (run before delivery, on top of write4adhd-book's checklist)
+## 11. Onboarding checklist (run before delivery, on top of write4adhd-writing's and write4adhd-book's checklists)
 
 - [ ] Cover page states the base commit and the survey date; every `file:line` is relative to it
 - [ ] **Subsystem inventory coverage is 100%**: every item has a landing spot in the book (full chapter / tour section / one map line + one glossary row); nothing is zero-information; the area the user named got a full chapter or at least two sections
